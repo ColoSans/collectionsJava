@@ -5,6 +5,7 @@
  */
 
 package collectionsjava;
+import controller.Manager;
 import exceptions.MyException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,9 +24,12 @@ public class CollectionsJava {
     /**
      * @param args the command line arguments
      */
+    private static Manager controller;
+    
     public static void main(String[] args) {
+        
          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-         
+         controller = new Manager();
          String linea;
          boolean salir = false;
          do{
@@ -33,7 +37,6 @@ public class CollectionsJava {
                  linea = br.readLine().toLowerCase();
                  String[] arrayLinea = linea.split(" ");
                  if (arrayLinea.length > 0) {
-
                         switch (arrayLinea[0]) {
                             case "exit":
                                 if (arrayLinea.length == 1) {
@@ -43,8 +46,8 @@ public class CollectionsJava {
                                 }
                                 break;
                             case "room":
-                                if (arrayLinea.length == 5) {
-
+                                if (arrayLinea.length == 4) {
+                                    createRoom(linea);
                                 } else {
                                     throw new MyException(0);
                                 }
@@ -113,10 +116,15 @@ public class CollectionsJava {
              } catch (IOException ex) {
                  Logger.getLogger(CollectionsJava.class.getName()).log(Level.SEVERE, null, ex);
              } catch (MyException ex) {
-                 Logger.getLogger(CollectionsJava.class.getName()).log(Level.SEVERE, null, ex);
+                 System.out.println(ex.getMessage());
              }
              
          }while (!salir);
     }
     
+     public static void createRoom(String linea){
+         String[] arrayLinea = linea.split(" ");
+         String[] arrayLineaServices = arrayLinea[3].split(",");
+         
+     }
 }

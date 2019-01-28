@@ -24,7 +24,7 @@ public class MyException extends Exception {
 
     private List<String> messages = Arrays.asList(
             "[ Wrong number of arguments ]",
-            "[ Wrong command ]",
+            "[ Room already exists ]",
             "[ Wrong command ]",
             "[ Wrong command ]"
             );
