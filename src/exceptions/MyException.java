@@ -17,16 +17,16 @@ public class MyException extends Exception {
     public static final int NUMBER_ARGUMENTS = 0;
     public static final int ROOM_EXIST = 1;
     public static final int WRONG_SERVICE = 2;
-    public static final int WORKER_ALREADY_EXIST = 3;
+    public static final int WRONG_NCODE = 3;
     public static final int ANY_ROOM_AVAILABLE = 4;
-
+    
     private int code;
 
     private List<String> messages = Arrays.asList(
             "[ Wrong number of arguments ]",
             "[ Room already exists ]",
-            "[ Wrong command ]",
-            "[ Wrong command ]"
+            "[ Wrong service ]",
+            "[ Wrong room code ]"
             );
 
     public MyException(int code) {

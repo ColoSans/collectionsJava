@@ -10,6 +10,9 @@ import exceptions.MyException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import static java.lang.Integer.parseInt;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.*;
@@ -47,7 +50,7 @@ public class CollectionsJava {
                                 break;
                             case "room":
                                 if (arrayLinea.length == 4) {
-                                    createRoom(linea);
+                                    addRoom(linea);
                                 } else {
                                     throw new MyException(0);
                                 }
@@ -122,9 +125,28 @@ public class CollectionsJava {
          }while (!salir);
     }
     
-     public static void createRoom(String linea){
-         String[] arrayLinea = linea.split(" ");
-         String[] arrayLineaServices = arrayLinea[3].split(",");
-         
+    public static void addRoom(String linea) throws MyException{
+        String[] arrayLinea = linea.split(" ");
+        int capacidad=parseInt(arrayLinea[2]);
+        String nHabitacion=arrayLinea[1];
+        HashSet<String> serviciosPropios = addHashService(arrayLinea[3]);
+        
+        controller.room(nHabitacion, capacidad, serviciosPropios);
+        System.out.println("\033[34m"+"--> new room added "+nHabitacion+"<--"+"\u001B[30m");
+    }
+    
+     public static HashSet<String> addHashService(String arrayLinea) throws MyException{
+        String[] arrayLineaServices = arrayLinea.split(",");
+        HashSet<String> serviciosPropios = new HashSet();
+        
+        if(controller.compararService(arrayLineaServices)){
+            for(int i=0; i<arrayLineaServices.length; i++){
+                serviciosPropios.add(arrayLineaServices[i]);
+            }
+        }else{
+            throw new MyException(2);
+        }
+        return serviciosPropios;
      }
+     
 }
