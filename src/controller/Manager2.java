@@ -73,7 +73,6 @@ public class Manager {
 
     public boolean compararService(String[] arrayLineaServices) {
         int comprobarContador = recorreArrayServices(arrayLineaServices);
-        
         if (comprobarContador == arrayLineaServices.length) {
             return true;
         }else{

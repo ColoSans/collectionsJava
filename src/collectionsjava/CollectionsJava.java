@@ -119,7 +119,7 @@ public class CollectionsJava {
              } catch (IOException ex) {
                  Logger.getLogger(CollectionsJava.class.getName()).log(Level.SEVERE, null, ex);
              } catch (MyException ex) {
-                 System.out.println(ex.getMessage());
+                 System.out.println("\u001B[31m"+ex.getMessage()+"\u001B[0m");
              }
              
          }while (!salir);
